@@ -33,7 +33,9 @@ android {
 }
 
 dependencies {
-
+    implementation libs.gson
+    implementation libs.mmkv // 使用最新版本
+    implementation libs.androidx.recyclerview // 使用 RecyclerView 替代 ListView
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material

@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:padding="16dp">
 
+    <!-- 水平引导线：定位屏幕1/3高度 -->
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline_third"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.20" />
+
+  <!-- 输入区域容器 -->
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/input_container"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/guideline_third"
+    app:layout_constraintBottom_toTopOf="@id/history_container">
+
+        <!-- 输入框 -->
+    <EditText
+      android:id="@+id/etInput"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:hint="在此输入文本"
+      android:imeOptions="actionDone"
+      android:inputType="text"
+      android:maxWidth="400dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@id/btnSave"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 确认按钮 -->
+    <Button
+      android:id="@+id/btnSave"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="确认"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <!-- 历史记录容器 -->
+  <LinearLayout
+    android:id="@+id/history_container"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@id/input_container"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 历史记录标题 -->
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:text="历史记录（最多10条）"
+      android:textStyle="bold" />
+
+    <!-- 历史记录列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rvHistory"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_marginTop="8dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
